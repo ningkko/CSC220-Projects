@@ -12,32 +12,32 @@ def print_the_report(list_of_result):
 			print('*** ', list[0],list[1],list[2])
 
 def main():
-	
-	path = input('The directory: ')
+
+	path = input('Directory: ')
 	#If you just want to operate in the current directory
 	#list_of_filename = [filename for filename in os.listdir(os.getcwd()) if filename.endswith('.py')]
 	list_of_filename = [filename for filename in os.listdir(path) if filename.endswith('.py')]
 	list_of_result = []
 
 	for filename1 in list_of_filename[0:-1]:
-		count_of_file = list_of_filename1.index(filename)+1
+		count_of_file = list_of_filename.index(filename1) + 1
 
 		for filename2 in list_of_filename[count_of_file:]:
 			list_of_identical_line = []
 			line_num_f1 = 0
 			count_of_identical_lines = 0
 
-			for line1 in open(filename1): 
+			for line1 in open(path+"/"+filename1): 
 				if line1.strip(): #and not line1.strip().startswith('#') and not line1.strip().startswith('\"""'):
 					line_num_f1 += 1
 					line_num_f2 = 0
 
-					for line2 in open(filename2):
+					for line2 in open(path+"/"+filename2):
 						if line2.strip(): #and not line2.strip().startswith('#') and not line2.strip().startswith('\"""'):
 							line_num_f2 += 1
 							if line1 == line2:
-								list_of_identical_line.append([line_num_f1,line_num_f2,line1])
-								count_of_identical_lines+=1
+								list_of_identical_line.append([line_num_f1,line_num_f2,line1.strip()])
+								count_of_identical_lines += 1
 
 			if list_of_identical_line != 0:
 				list_of_result.append([filename1, filename2, count_of_identical_lines, list_of_identical_line])
