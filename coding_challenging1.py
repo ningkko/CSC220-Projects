@@ -1,18 +1,10 @@
 import os
 
-def print_the_report(list_of_result):
-	for inner_list in list_of_result:
-		print('-'*30)
-		print('File 1: '+inner_list[0])
-		print('File 2: '+inner_list[1])
-		print('Number of identical lines: ',inner_list[2])	
-		print('-'*30)
-		for list in inner_list[3]:
-			print('*** ', list[0],list[1],list[2])
-
 def main():
+	list_of_result = compare_contents(input('Directory: '))
+	print_the_report(list_of_result)
 
-	path = input('Directory: ')
+def compare_contents(path):
 	#If you just want to operate in the current directory
 	#list_of_filename = [filename for filename in os.listdir(os.getcwd()) if filename.endswith('.py')]
 	list_of_filename = [filename for filename in os.listdir(path) if filename.endswith('.py')]
@@ -41,8 +33,18 @@ def main():
 				list_of_result.append([filename1, filename2, count_of_identical_lines, list_of_identical_line])
 			count_of_file += 1
 
-	print_the_report(list_of_result)
-	
+	return list_of_result
+
+def print_the_report(list_of_result):
+	for inner_list in list_of_result:
+		print('-'*30)
+		print('File 1: '+inner_list[0])
+		print('File 2: '+inner_list[1])
+		print('Number of identical lines: ',inner_list[2])	
+		print('-'*30)
+		for list in inner_list[3]:
+			print('*** ', list[0],list[1],list[2])
+
 if __name__ == '__main__':
-  main()
+	main()
 	
