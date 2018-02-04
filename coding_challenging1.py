@@ -1,5 +1,4 @@
 import os
-import glob
 
 def print_the_report(list_of_result):
 	for inner_list in list_of_result:
