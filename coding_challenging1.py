@@ -24,14 +24,13 @@ def main():
 
 		for filename2 in list_of_filename[count_of_file:]:
 			list_of_identical_line = []
-			line_num_f1 = 0
+			line_num_f1 = 1
 			count_of_identical_lines = 0
 
 			for line1 in open(path+"/"+filename1): 
+				line_num_f1 += 1
 				if line1.strip(): #and not line1.strip().startswith('#') and not line1.strip().startswith('\"""'):
-					line_num_f1 += 1
-					line_num_f2 = 0
-
+					line_num_f2 = 1
 					for line2 in open(path+"/"+filename2):
 						if line2.strip(): #and not line2.strip().startswith('#') and not line2.strip().startswith('\"""'):
 							line_num_f2 += 1
