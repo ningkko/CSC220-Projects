@@ -12,6 +12,8 @@ Input: When the commend line asks for a directory, input the path of a directory
 Output: A report of redundent lines in all the files in this directory
 
 ### Example 1 (In our own computer)
+Input:
+Output:
 
 ### Example 2
 
