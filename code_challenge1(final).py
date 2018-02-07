@@ -31,7 +31,8 @@ def compare_contents(path):
 			#loop through the lines in the two files using their absolute path and compare them
 			for line1 in open(path+"/"+filename1): 
 				line_num_f1 += 1
-				if line1.strip(): 
+				#Doesn't readin blank comments
+				if line1.strip() and line1.strip()!="'''" and line1.strip()!="#": 
 					line_num_f2 = 1
 					for line2 in open(path+"/"+filename2):
 						if line2.strip(): 
