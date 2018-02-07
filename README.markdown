@@ -1,15 +1,16 @@
 # CSC220 Coding Challenge 1
-A general description of our code:
-This is a redundancy checker that (1)reads all the files in the input directory 
-and (2)prints a report of the lines that are identical in any pair of files
+## Our project
+This is a redundancy checker that 
+1. reads all the files in the input directory and
+2. prints a report of the lines that are identical in any pair of files
 
 ## Installation and set-up
-Download the file and run the it on python 3.
-Note: This pragram is written with python 3, so it might only support python 3!
+Download the file and run it in Python 3.
+Note: This pragram is written with regard to Python 3, so you might want to run it in Python 3!
 
 ## Running the tests
-Input: When the commend line asks for a directory, enter the absolute path of the directory you want to test
-Output: A report of redundent lines in all the files in this directory. The first number is the index of the identical line in file 1, the second number is the index of that line in file 2, followed by content of the identical line.
+- Input: When the commend line asks for a directory, enter the absolute path of the directory you want to test
+- Output: A report of redundent lines in all the files in this directory. The first number is the index of the identical line in file 1, the second number is the index of that line in file 2, followed by content of the identical line.
 
 ### Example 1 
 ```
@@ -59,6 +60,8 @@ Number of identical lines:  4
 ***  9 6 #This comment appears in test3 and also will appear in test4
 ```
 
+## Efficiency test
+
 ## References
 Inspired by:
 - http://mywiki.wooledge.org/BashFAQ/036
@@ -67,5 +70,3 @@ Inspired by:
 
 ## Contributers
 Fanghui He, Yining Hua, Yvonne Zhu, Qiaqia Ji
-
-## Efficiency Test
