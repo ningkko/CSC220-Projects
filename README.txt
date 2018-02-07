@@ -4,7 +4,8 @@ This is a redundancy checker that (1)reads all the files in the input directory
 and (2)prints a report of the lines that are identical in any pair of files
 
 ## Installation and set-up
-Download the file and run the file.
+Download the file and run the it on python 3.
+Note: This pragram is written with python 3, so it might only support python 3!
 
 ## Running the tests
 Input: When the commend line asks for a directory, enter the absolute path of the directory you want to test
