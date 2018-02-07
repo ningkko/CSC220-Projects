@@ -1,4 +1,4 @@
-#Fanghui He, Yining Hua, Yvonne Zhu, Qiaqia
+#Fanghui He, Yining Hua, Yvonne Zhu, Qiaqia Ji
 #Coding_challenge 1 for csc220
 #Feb 5, 2018
 """In this program we are trying to make a redundancy checker 
@@ -42,7 +42,7 @@ def compare_contents(path):
 								count_of_identical_lines += 1
 								
 			#If we found identical lines, add the list_of_identical_line to list_of_report; if not, do nothing
-			if count_of_identical_line != 0:
+			if count_of_identical_lines != 0:
 				list_of_report.append([filename1, filename2, count_of_identical_lines, list_of_identical_line])
 				
 			count_of_file += 1
