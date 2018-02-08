@@ -31,12 +31,12 @@ def compare_contents(path):
 			for line1 in open(path+"/"+filename1): 
 				line_num_f1 += 1
 				#skip blank comments and lines
-				if line1.strip()!="'''" and line1.strip()!="#" and line1.strip()!='': 
+				if line1.strip()!="'''" and line1.strip()!="#": 
 					line_num_f2 = 0
 					for line2 in open(path+"/"+filename2):
 						line_num_f2 += 1
 						#skip blank lines
-						if line2.strip()!='': 
+						if line2.strip(): 
 							#if the lines are the same, add the lines and line numbers to the list_of_identical_line
 							if line1 == line2:
 								list_of_identical_line.append([line_num_f1,line_num_f2,line1.strip()])
