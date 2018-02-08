@@ -61,6 +61,7 @@ Number of identical lines:  4
 ```
 
 ## Efficiency test
+We used generators to read in all file names. We made sure that all for loops are in their most efficient form. We also combined print statements when possible. Therefore, we think that our program is efficient. 
 
 ## References
 Inspired by:
