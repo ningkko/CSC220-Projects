@@ -63,7 +63,7 @@ Number of identical lines:  4
 ## Efficiency test
 We used generators to read in all file names. We made sure that all for loops are in their most efficient form. We also combined print statements when possible. Also, for the loops:
 1) Instead of looping through the whole directory every time we are comparing two files, we compare any of two files only once. For example, if we have compared file1 with file2, we wouldn't compare file2 with file1
-2) Instead of loop through all the lines in the files, we compare any of two lines only once. For example, if we have compared line1 with line2, we wouldn't compare line2 with line1
+2) Instead of looping through all the lines in the files, we compare any of two lines only once. For example, if we have compared line1 with line2, we wouldn't compare line2 with line1
 Therefore, we think that our program is efficient. 
 
 ## References
