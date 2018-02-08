@@ -5,14 +5,13 @@
 that reads all the files in a specified directory 
 and prints a report of the lines that are identical in any pair of files
 """
-
 import os
 
 #Start to run the program
 def main():
-	list_of_report = compare_contents(input('Directory: '))
-	print_the_report(list_of_report)
-	
+    list_of_report = compare_contents(input('Directory: '))
+    print_the_report(list_of_report)
+
 #Given the directory path, compare the contents of any python files in that directory
 def compare_contents(path):
 	#If you just want to operate in the current directory
@@ -25,18 +24,17 @@ def compare_contents(path):
 		count_of_file = list_of_filename.index(filename1) + 1
 		for filename2 in list_of_filename[count_of_file:]:
 			list_of_identical_line = []
-			line_num_f1 = 1
+			line_num_f1 = 0
 			count_of_identical_lines = 0
 			
 			#loop through the lines in the two files using their absolute path and compare them
 			for line1 in open(path+"/"+filename1): 
 				line_num_f1 += 1
-				#Doesn't readin blank comments
-				if line1.strip() and line1.strip()!="'''" and line1.strip()!="#": 
-					line_num_f2 = 1
+				if line1.strip(): 
+					line_num_f2 = 0
 					for line2 in open(path+"/"+filename2):
+						line_num_f2 += 1
 						if line2.strip(): 
-							line_num_f2 += 1
 							#if the lines are the same, add the lines and line numbers to the list_of_identical_line
 							if line1 == line2:
 								list_of_identical_line.append([line_num_f1,line_num_f2,line1.strip()])
@@ -49,19 +47,18 @@ def compare_contents(path):
 			count_of_file += 1
 
 	return list_of_report
-	
+
 #Function to print out the report
 def print_the_report(list_of_report):
 	for inner_list in list_of_report:
-		print('-'*30)
-		print('File 1: '+inner_list[0])
-		print('File 2: '+inner_list[1])
-		print('Number of identical lines: ',inner_list[2])	
-		print('-'*30)
+		print('-'*30 +'\n'+
+			'File 1: '+str(inner_list[0])+'\n'+
+			'File 2: '+str(inner_list[1])+'\n'+
+		    'Number of identical lines: ', str(inner_list[2])+'\n'+
+		    '-'*30)
 		#print all the identical lines in the two files
 		for list in inner_list[3]:
 			print('*** ', list[0],list[1],list[2])
 #End main()
 if __name__ == '__main__':
 	main()
-	
