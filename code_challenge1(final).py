@@ -54,8 +54,8 @@ def print_the_report(list_of_report):
 		print('-'*30 +'\n'+
 			'File 1: '+str(inner_list[0])+'\n'+
 			'File 2: '+str(inner_list[1])+'\n'+
-		    'Number of identical lines: ', str(inner_list[2])+'\n'+
-		    '-'*30)
+		        'Number of identical lines: ', str(inner_list[2])+'\n'+
+		      '-'*30)
 		#print all the identical lines in the two files
 		for list in inner_list[3]:
 			print('*** ', list[0],list[1],list[2])
