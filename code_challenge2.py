@@ -39,7 +39,7 @@ def find_shortest_string(gene1, gene2):
 
 	return result,min_len	
 						
-def check(str):
+def check_valid_gene(str):
 	set = ['A','C','G','T']
 	for c in set:
 		if c not in str: 
@@ -49,7 +49,7 @@ def check(str):
 def main():
 	gene1 = input('Please enter a string of genes: ')
 	gene2 = input('Please enter another string of genes: ')
-	if(check(gene1)==1 and check(gene2)==1):
+	if(check_valid_gene(gene1)==1 and check_valid_gene(gene2)==1):
 		shortest_gene, min_length = find_shortest_string(gene1,gene2)
 		print("********************************************\nstring 1 – {0}     string 2 – {1}\nshortest string that has both as substring\n{2} (length {3})\n********************************************".format(gene1,gene2,shortest_gene,min_length))
 	else:
