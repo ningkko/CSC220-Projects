@@ -1,9 +1,10 @@
-#Fanghui He,Yining Hua, Qiaqia Ji
+#Fanghui He,Yining Hua, Qiaqia Ji,Yvonne Zhu
 #Feb 10, 2018
 #csc220
 #Code-challenge 2
-#given two strings representing snippets of genes (letters ACGT), 
+#Given two strings representing snippets of genes (letters ACGT), 
 #identify the shortest string that could contain them both as subsequences.
+##Efficiency: Complexity: O(2n), more efficient than using recursion(O(2^n)).
 
 def find_shortest_string(gene1, gene2):
 	'''find_shortest_string(gene1,gene2)::= outputs the shortest concatenated string of gene1 and gene2
