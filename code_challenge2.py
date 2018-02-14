@@ -39,10 +39,10 @@ def find_shortest_string(gene1, gene2):
 
 	return result,min_len	
 						
-def check_valid_gene(str):
+def check_valid_gene(gene):
 	set = ['A','C','G','T']
 	for c in set:
-		if c not in str: 
+		if c not in gene: 
 			return 0;
 	return 1;
 			
