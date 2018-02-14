@@ -38,13 +38,22 @@ def find_shortest_string(gene1, gene2):
 					result = combined_string
 
 	return result,min_len	
-			
+						
+def check(str):
+	set = ['A','C','G','T']
+	for c in set:
+		if c not in str: 
+			return 0;
+	return 1;
 			
 def main():
 	gene1 = input('Please enter a string of genes: ')
 	gene2 = input('Please enter another string of genes: ')
-	shortest_gene, min_length = find_shortest_string(gene1,gene2)
-	print("********************************************\nstring 1 – {0}     string 2 – {1}\nshortest string that has both as substring\n{2} (length {3})\n********************************************".format(gene1,gene2,shortest_gene,min_length))
+	if(check(gene1)==1 and check(gene2)==1):
+		shortest_gene, min_length = find_shortest_string(gene1,gene2)
+		print("********************************************\nstring 1 – {0}     string 2 – {1}\nshortest string that has both as substring\n{2} (length {3})\n********************************************".format(gene1,gene2,shortest_gene,min_length))
+	else:
+		raise ValueError("The input string of genes is not valid")
 
 if __name__ == '__main__':
 	main()
