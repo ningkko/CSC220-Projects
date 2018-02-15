@@ -1,8 +1,7 @@
-#csc220
+#Fanghui He, Yining Hua, Yvonne Zhu, Qiaqia Ji
 #Code-challenge 2
 #Given two strings representing snippets of genes (letters ACGT), 
 #identify the shortest string that could contain them both as subsequences.
-##Efficiency: Complexity: O(2n), more efficient than using recursion(O(2^n)).
 
 def main():
 	gene1 = input('Please enter a string of genes: ')
