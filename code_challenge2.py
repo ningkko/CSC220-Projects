@@ -1,18 +1,36 @@
-#Fanghui He,Yining Hua, Qiaqia Ji,Yvonne Zhu
-#Feb 10, 2018
 #csc220
 #Code-challenge 2
 #Given two strings representing snippets of genes (letters ACGT), 
 #identify the shortest string that could contain them both as subsequences.
 ##Efficiency: Complexity: O(2n), more efficient than using recursion(O(2^n)).
 
-def find_shortest_string(gene1, gene2):
-	'''find_shortest_string(gene1,gene2)::= outputs the shortest concatenated string of gene1 and gene2
+def main():
+	gene1 = input('Please enter a string of genes: ')
+	gene2 = input('Please enter another string of genes: ')
+	if(check_valid_gene(gene1)==1 and check_valid_gene(gene2)==1):
+		shortest_gene, min_length = find_shortest_string(gene1,gene2)
+		print("******************************************** \n string 1 – {0} string 2 – {1} \n shortest string that has both as substring \n {2} (length {3})\n********************************************".format(gene1,gene2,[gene for gene in shortest_gene],min_length))
+	else:
+		raise ValueError("The input string of genes is not valid")
+
+def check_valid_gene(gene):
+	'''check_valid_gene(string)::= returns TRUE if the dtring is composed og only A,C,G,T.
 	'''
-	result = ''
+	#case insensitive
+	gene = gene.upper()
+	set = ['A','C','G','T']
+	for c in gene:
+		if c not in set: 
+			return 0;
+	return 1;
+					
+def find_shortest_string(gene1, gene2):
+	'''find_shortest_string(string1,string2)::= outputs the shortest concatenated string of string1 and string2
+	'''
+	result = []
 	#base case
 	min_len = len(gene1) + len(gene2)
-	result =gene1+gene2
+	result.append(gene1+gene2)
 
 	#Case1: if gene1 concatenates gene2
 	for index1 in range(len(gene1)):
@@ -25,7 +43,7 @@ def find_shortest_string(gene1, gene2):
 				#if the new string is shorter than the base case,replace it
 				if len(combined_string) < min_len:
 					min_len = len(combined_string)
-					result = combined_string
+					result[0]=combined_string
 				
 	#Case2: if gene2 concatenates gene1
 	#Do the same thing as in Case 1
@@ -35,25 +53,12 @@ def find_shortest_string(gene1, gene2):
 				combined_string = gene2 + gene1[(len(gene2)-index2):]
 				if len(combined_string) < min_len:
 					min_len = len(combined_string)
-					result = combined_string
-
+					result[0]=combined_string
+				#If BA has the same length as AB, return both AB and BA
+				elif len(combined_string)==min_len:
+					result.append(combined_string)
 	return result,min_len	
 						
-def check_valid_gene(gene):
-	set = ['A','C','G','T']
-	for c in gene:
-		if c not in set: 
-			return 0;
-	return 1;
-			
-def main():
-	gene1 = input('Please enter a string of genes: ')
-	gene2 = input('Please enter another string of genes: ')
-	if(check_valid_gene(gene1)==1 and check_valid_gene(gene2)==1):
-		shortest_gene, min_length = find_shortest_string(gene1,gene2)
-		print("******************************************** \n string 1 – {0} string 2 – {1} \n shortest string that has both as substring \n {2} (length {3})\n********************************************".format(gene1,gene2,shortest_gene,min_length))
-	else:
-		raise ValueError("The input string of genes is not valid")
 
 if __name__ == '__main__':
 	main()
