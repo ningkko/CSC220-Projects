@@ -8,13 +8,34 @@ Download the file and run it in Python 3.
 Note: This pragram is written with regard to Python 3, so you might want to run it in Python 3!
 
 ## Running the tests
-- Input: 
-- Output: 
+- Input: Two strings of genes, case insensitive, but needs the characters in both strings to be only from ["A","C","G","T"].
+- Output: Outputs the shortest string that could contain them both as subsequences, and its length.
 
 ### Example 1 
+Nene-2:desktop Nene$ python test1.py
+Please enter a string of genes: acgggggg
+Please enter another string of genes: gggtTA 
+
+******************************************** 
+ string 1 – acgggggg string 2 – gggtTA 
+ shortest string that has both as substring 
+ acggggggtTA (length 11)
+********************************************
+
+### Example 2
+Nene-2:desktop Nene$ python test1.py
+Please enter a string of genes: FTYUJDHVBGHJ
+Please enter another string of genes: DSHCJUDJSBF
+
+Traceback (most recent call last):
+  File "test1.py", line 60, in <module>
+    main()
+  File "test1.py", line 57, in main
+    raise ValueError("The input string of genes is not valid")
+ValueError: The input string of genes is not valid
 
 ## Efficiency test
-
+Two loops => Complexity: O(2n), more efficient than using recursion(O(2^n)).
 
 ## References
 Inspired by:
