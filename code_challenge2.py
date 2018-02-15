@@ -31,7 +31,7 @@ def find_shortest_string(gene1, gene2):
 	min_len = len(gene1) + len(gene2)
 	result.append(gene1+gene2)
 
-	#Case1: if gene1 concatenates gene2
+	#Case1: if the result begins with gene1
 	for index1 in range(len(gene1)):
 		#Compare the first digit of gene2 to every digit of gene1
 		if gene2[0] == gene1[index1]:
@@ -44,7 +44,7 @@ def find_shortest_string(gene1, gene2):
 					min_len = len(combined_string)
 					result[0]=combined_string
 				
-	#Case2: if gene2 concatenates gene1
+	#Case2: if the result begins with gene2
 	#Do the same thing as in Case 1
 	for index2 in range(len(gene2)):
 		if gene1[0] == gene2[index2]:
