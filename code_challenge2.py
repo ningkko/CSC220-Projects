@@ -29,7 +29,7 @@ def find_shortest_string(gene1, gene2):
 	result = []
 	#base case
 	min_len = len(gene1) + len(gene2)
-	result[0] = gene1+gene2
+	result.append(gene1+gene2)
 
 	#Case1: if the result begins with gene1
 	for index1 in range(len(gene1)):
