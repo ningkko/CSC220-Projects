@@ -6,6 +6,9 @@
 def main():
 	gene1 = input('Please enter a string of genes: ')
 	gene2 = input('Please enter another string of genes: ')
+	#If lowercase, change into uppercase//Gene should be in uppercases
+	gene1,gene2 = gene1.upper(),gene2.upper()
+
 	if(check_valid_gene(gene1)==1 and check_valid_gene(gene2)==1):
 		shortest_gene, min_length = find_shortest_string(gene1,gene2)
 		print("******************************************** \n string 1 – {0} string 2 – {1} \n shortest string that has both as substring \n {2} (length {3})\n********************************************".format(gene1,gene2,[gene for gene in shortest_gene],min_length))
@@ -15,8 +18,6 @@ def main():
 def check_valid_gene(gene):
 	'''check_valid_gene(string)::= returns TRUE if the string is composed og only A,C,G,T.
 	'''
-	#case insensitive
-	gene = gene.upper()
 	set = ['A','C','G','T']
 	for c in gene:
 		if c not in set: 
