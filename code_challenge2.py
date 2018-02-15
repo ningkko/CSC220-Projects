@@ -13,7 +13,7 @@ def main():
 		raise ValueError("The input string of genes is not valid")
 
 def check_valid_gene(gene):
-	'''check_valid_gene(string)::= returns TRUE if the dtring is composed og only A,C,G,T.
+	'''check_valid_gene(string)::= returns TRUE if the string is composed og only A,C,G,T.
 	'''
 	#case insensitive
 	gene = gene.upper()
@@ -29,7 +29,7 @@ def find_shortest_string(gene1, gene2):
 	result = []
 	#base case
 	min_len = len(gene1) + len(gene2)
-	result.append(gene1+gene2)
+	result[0] = gene1+gene2
 
 	#Case1: if the result begins with gene1
 	for index1 in range(len(gene1)):
@@ -43,6 +43,9 @@ def find_shortest_string(gene1, gene2):
 				if len(combined_string) < min_len:
 					min_len = len(combined_string)
 					result[0]=combined_string
+				#If BA has the same length as AB, append BA to the end of the list and return both AB and BA
+				elif len(combined_string)==min_len and len(combined_string) < len(gene1+gene2):
+					result.insert(1,combined_string)
 				
 	#Case2: if the result begins with gene2
 	#Do the same thing as in Case 1
@@ -53,9 +56,13 @@ def find_shortest_string(gene1, gene2):
 				if len(combined_string) < min_len:
 					min_len = len(combined_string)
 					result[0]=combined_string
-				#If BA has the same length as AB, return both AB and BA
-				elif len(combined_string)==min_len:
-					result.append(combined_string)
+				#If BA has the same length as AB, append BA to the end of the list and return both AB and BA
+				elif len(combined_string)==min_len and len(combined_string) < len(gene1+gene2):
+					result.insert(1,combined_string)
+	#Check to see if there are multiple same length result
+	for index in range(len(result)-1):
+		if len(result[index+1]) > len(result[index]):
+			del result[index]
 	return result,min_len	
 						
 
