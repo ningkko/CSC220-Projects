@@ -40,7 +40,7 @@ Inspired by:
 https://stackoverflow.com/questions/2294493/how-to-get-the-position-of-a-character-in-python
 https://stackoverflow.com/questions/663171/is-there-a-way-to-substring-a-string-in-python
 https://www.tutorialspoint.com/python/list_insert.htm
-
+https://stackoverflow.com/questions/4838504/how-do-i-truncate-a-list
 
 ## Contributers
 Fanghui He, Yining Hua, Yvonne Zhu, Qiaqia Ji
