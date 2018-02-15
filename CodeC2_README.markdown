@@ -21,7 +21,7 @@ Please enter another string of genes: ACGTgcta
  ['CTATTTACGTGCTA', 'ACGTGCTATTTACG'] (length 14)
 ******************************************** 
 
-### Example 3
+### Example 2
 Nene-2:desktop Nene$ python gene_splicing.py
 Please enter a string of genes: actrs
 Please enter another string of genes: adwr
@@ -33,7 +33,7 @@ Traceback (most recent call last):
 ValueError: The input string of genes is not valid
 
 ## Efficiency test
-Two loops => Complexity: O(2n), more efficient than using recursion(O(2^n)).
+In our code, we discuss the problem in two cases, each of which contains only one for-loop. Therefore, the time complexity for two loops is O(2n), and our solution is more efficient than using recursion(O(2^n)).
 
 ## References
 Inspired by:
