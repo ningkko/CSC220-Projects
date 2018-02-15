@@ -5,7 +5,7 @@ identify the shortest string that could contain them both as subsequences.
 
 ## Installation and set-up
 - Download the file and run it in Python 3.
-- Note: This pragram is written with regard to Python 3, so you might want to run it in Python 3!
+- Note: This program is written with regard to Python 3, so you might want to run it in Python 3!
 
 ## Running the tests
 - Input: Two strings of genes, case insensitive, but needs the characters in both strings to be only from ["A","C","G","T"].
