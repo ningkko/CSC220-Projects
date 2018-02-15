@@ -8,19 +8,19 @@
 - Note: This pragram is written with regard to Python 3, so you might want to run it in Python 3!
 
 ## Running the tests
-- Input: Two strings of genes, case insensitive, but needs the characters in both strings to be only from ["A","C","G","T"].
+- Input: Two strings of genes, case insensitive, but will correct the input into uppercase in default, and needs the characters in both strings to be only from ["A","C","G","T"].
 - Output: Outputs the shortest string that could contain them both as subsequences, and its length. If A Union B has the same length as B union A and is not the basic full length, return both strings.
 
 ### Example 1 
 ```
 Nene-2:desktop Nene$ python gene_splicing.py
-Please enter a string of genes: ctatttacg
-Please enter another string of genes: ACGTgcta
+Please enter a string of genes: ACGgca
+Please enter another string of genes: GCAacg
 ******************************************** 
- string 1 – CTATTTACG string 2 – ACGTGCTA 
+ string 1 – ACGGCA string 2 – GCAACG 
  shortest string that has both as substring 
- ['CTATTTACGTGCTA', 'ACGTGCTATTTACG'] (length 14)
-******************************************** 
+ ['ACGGCAACG', 'GCAACGGCA'] (length 9)
+********************************************
 ```
 ### Example 2
 ```
