@@ -18,6 +18,8 @@ Note: This pragram is written with regard to Python 3, so you might want to run 
 
 ## References
 Inspired by:
+https://stackoverflow.com/questions/2294493/how-to-get-the-position-of-a-character-in-python
+https://stackoverflow.com/questions/663171/is-there-a-way-to-substring-a-string-in-python
 
 
 ## Contributers
