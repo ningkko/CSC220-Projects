@@ -41,8 +41,8 @@ def find_shortest_string(gene1, gene2):
 						
 def check_valid_gene(gene):
 	set = ['A','C','G','T']
-	for c in set:
-		if c not in gene: 
+	for c in gene:
+		if c not in set: 
 			return 0;
 	return 1;
 			
@@ -51,7 +51,7 @@ def main():
 	gene2 = input('Please enter another string of genes: ')
 	if(check_valid_gene(gene1)==1 and check_valid_gene(gene2)==1):
 		shortest_gene, min_length = find_shortest_string(gene1,gene2)
-		print("********************************************\nstring 1 – {0}     string 2 – {1}\nshortest string that has both as substring\n{2} (length {3})\n********************************************".format(gene1,gene2,shortest_gene,min_length))
+		print("******************************************** \n string 1 – {0} string 2 – {1} \n shortest string that has both as substring \n {2} (length {3})\n********************************************".format(gene1,gene2,shortest_gene,min_length))
 	else:
 		raise ValueError("The input string of genes is not valid")
 
