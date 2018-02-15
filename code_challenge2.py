@@ -44,7 +44,7 @@ def find_shortest_string(gene1, gene2):
 					min_len = len(combined_string)
 					result[0]=combined_string
 				#If BA has the same length as AB, append BA to the end of the list and return both AB and BA
-				elif len(combined_string)==min_len and len(combined_string) < len(gene1+gene2):
+				elif len(combined_string)==min_len and len(combined_string) < len(gene1+gene2) and combined_string!=result[0]:
 					result.insert(1,combined_string)
 				
 	#Case2: if the result begins with gene2
@@ -57,9 +57,9 @@ def find_shortest_string(gene1, gene2):
 					min_len = len(combined_string)
 					result[0]=combined_string
 				#If BA has the same length as AB, append BA to the end of the list and return both AB and BA
-				elif len(combined_string)==min_len and len(combined_string) < len(gene1+gene2):
+				elif len(combined_string)==min_len and len(combined_string) < len(gene1+gene2) and combined_string!=result[0]:
 					result.insert(1,combined_string)
-	#Check to see if there are multiple same length result
+	#Check to see if there are multiple same length results
 	for index in range(len(result)-1):
 		if len(result[index+1]) > len(result[index]):
 			del result[index]
