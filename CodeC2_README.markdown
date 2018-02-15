@@ -4,7 +4,7 @@ Given two strings representing snippets of genes (letters ACGT),
 identify the shortest string that could contain them both as subsequences.
 
 ## Installation and set-up
-Download the file and run it in Python 3.
+Download the file and run it in Python 3. Input a string when the code asks for a gene, and input a second string when the code asks for another gene.
 Note: This pragram is written with regard to Python 3, so you might want to run it in Python 3!
 
 ## Running the tests
@@ -33,12 +33,13 @@ Traceback (most recent call last):
 ValueError: The input string of genes is not valid
 
 ## Efficiency test
-In our code, we discuss the problem in two cases, each of which contains only one for-loop. Therefore, the time complexity for two loops is O(2n), and our solution is more efficient than using recursion(O(2^n)).
+In our code, we discuss the problem in two cases, each of which contains only one for-loop. Therefore, the time complexity for two loops is O(n) (where n is the total length of the two string), and our solution is more efficient than using recursion(O(2^n)).
 
 ## References
 Inspired by:
 https://stackoverflow.com/questions/2294493/how-to-get-the-position-of-a-character-in-python
 https://stackoverflow.com/questions/663171/is-there-a-way-to-substring-a-string-in-python
+https://www.tutorialspoint.com/python/list_insert.htm
 
 
 ## Contributers
