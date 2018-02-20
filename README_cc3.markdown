@@ -1,4 +1,4 @@
-# CSC220 Coding Challenge 2: gene splicing
+# CSC220 Coding Challenge 3: Prime Pantry
 ## Objective: 
 
 ## Installation and set-up
