@@ -26,7 +26,7 @@ def primePantryV2(items, n_items, total):
     return result 
 
 def main():
-    #l= {"a":3,"b":2, "c":5, "d": 4, "e": 1}
+    l= {"a":3,"b":2, "c":5, "d": 4, "e": 1}
     total = 5
     print(primePantryV2(l, len(l), total))
      
