@@ -1,5 +1,8 @@
 # CSC220 Coding Challenge 3: Prime Pantry
 ## Objective: 
+- Given a dictionary of items and their (integer, positive-valued) item weights, 
+- identify whether or not there is a subset that could fill a Prime Pantry Box to exactly 100% and report which items are in the subset ( report the number of items in the subset that fills the box to 100% and return all possible solutions )
+- If there is no solution, returns the closest-without-going-over solution
 
 ## Installation and set-up
 - Download the file and run it in Python 3. 
@@ -14,7 +17,8 @@
 ### Example 2
 
 ## Efficiency test
-Since for every item we loop through the previous items to see what number we can get, the worset O is about O(n^2) for n num of items
+Since for every item we loop through the previous items to see what number we can get, the worset O is about O(n^2) for n num of items.
+
 ## References
 Inspired by:
 - https://stackoverflow.com/questions/8266529/python-convert-string-to-list
