@@ -3,6 +3,7 @@
 - Given a dictionary of items and their (integer, positive-valued) item weights, 
 - identify whether or not there is a subset that could fill a Prime Pantry Box to exactly 100% and report which items are in the subset ( report the number of items in the subset that fills the box to 100% and return all possible solutions )
 - If there is no solution, returns the closest-without-going-over solution
+##Note: We're unable to figure out a way to readin input from the command line. So in the test we put the input in main().
 
 ## Installation and set-up
 - Download the file and run it in Python 3. 
@@ -13,8 +14,12 @@
 - Output: subsets of the items which can add up to the max total, or are closed to the max total without going over it
 
 ### Example 1 
-
-### Example 2
+Nene-2:desktop Nene$ python test.py
+4 possible sets of items:   
+Set1 -> 2 items: 1.a 2.b  
+Set2 -> 1 items: 1.c  
+Set3 -> 2 items: 1.a 2.e  
+Set4 -> 3 items: 1.b 2.d 3.e  
 
 ## Efficiency test
 Since for every item we loop through the previous items to see what number we can get, the worset O is about O(n*t) in which n is the num of items and t is the total
