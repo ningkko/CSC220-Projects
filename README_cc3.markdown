@@ -17,7 +17,7 @@
 ### Example 2
 
 ## Efficiency test
-Since for every item we loop through the previous items to see what number we can get, the worset O is about O(n^2) for n num of items.
+Since for every item we loop through the previous items to see what number we can get, the worset O is about O(n*t) in which n is the num of items and t is the total
 
 ## References
 Inspired by:
