@@ -69,10 +69,10 @@ def main():
     dictionary = ast.literal_eval(sys.argv[1])
 
     # this is the number of items
-    nItems = sys.argv[2]
+    nItems = eval(sys.argv[2])
 
     # this is the total you want to reach
-    total = sys.argv[3]
+    total = eval(sys.argv[3])
 
     if check_input(items,n_items,total):
         results = (primePantry(items, n_items, total))
