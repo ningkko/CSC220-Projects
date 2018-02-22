@@ -64,8 +64,6 @@ def primePantry(items, n_items, total):
 
 
 def main():
-
-    final test.py < test.txt
     
     # this is the dictionary of items
     dictionary = ast.literal_eval(sys.argv[1])
