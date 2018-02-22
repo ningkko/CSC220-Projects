@@ -1,5 +1,8 @@
-#import numpy as np
-
+# Fanghui He, Yining Hua, Yvonne Zhu, Qiaqia Ji
+# Code-challenge 3
+# Given a dictionary of items and their (integer, positive-valued) item weights
+# identify whether or not there is a subset that could fill a Prime Pantry Box to exactly 100% 
+# report which items are in the subset
 
 def primePantry(items, n_items, total):
 	#create a table for dynamic programming
