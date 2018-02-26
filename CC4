@@ -1,1 +1,39 @@
-CC4 coding/
+// Fanghui He
+//CC4
+//Feb 25, 2018
+//Fanghui He, Yining Hua, Yvonne Zhu, QiaQia Ji
+
+  
+  // This is where your JS code will live!
+  function Album (artist, released_date, album_title){
+	this.artist = artist;
+	this.album_title = album_title;
+	this.released_date = released_date;
+	this.album_list = [];
+	this.add = function add(Song){
+		this.album_list.push(Song);
+	}
+  }
+  
+  function Song (song_name, duration){
+	//Album.call(this,artist, album, release_date,);
+	this.artist = Album.artist;
+	this.released_date = Album.released_date;
+	this.album_title = Album.album_title;	
+	//this.album = album;
+	//this.release_date = release_date;
+	this.song_name = song_name;
+	this.duration = duration;	
+  };
+  
+  Album = new Album("Singler", "2018/2/22", "Title");
+  song1 = new Song("NEW", "3:55")
+  Album.add(song1);
+  Album.add(new Song("NEW", "3:55"));
+  /**playlist.add(let song3 = new Song("HHH","CZ", "NEW", "2018/2/22","3:55"));
+  playlist.add(let song4 = new Song("HHH","CZ", "NEW", "2018/2/22","3:55"));
+  playlist.add(let song5 = new Song("HHH","CZ", "NEW", "2018/2/22","3:55"));
+  playlist.add(let song6 = new Song("HHH","CZ", "NEW", "2018/2/22","3:55"));
+  playlist.add(let song7 = new Song("HHH","CZ", "NEW", "2018/2/22","3:55"));*/
+  console.log(Album.album_list)
+
