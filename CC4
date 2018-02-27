@@ -79,8 +79,8 @@ Fanghui He, Yining Hua, Yvonne Zhu, QiaQia Ji-->
   Minks.add(song8=new Song("Annie", "02:48") );
 
   function print(Album){
-    let pic = Album.image;
-    let video = Album.video;
+    var pic = Album.image;
+    var video = Album.video;
     document.getElementById("title").innerHTML ='Album: '+Album.title;
     document.getElementById("artist").innerHTML ='Artist: '+Album.artist;
     document.getElementById("released_date").innerHTML ='Released Date: '+Album.released_date+'<br>';
@@ -88,13 +88,10 @@ Fanghui He, Yining Hua, Yvonne Zhu, QiaQia Ji-->
     for (let i = 0; i<Album.album_list.length; i++){
     document.getElementById("songs").innerHTML += Album.album_list[i].song_name+ "  "+Album.album_list[i].duration +'<br>'+'<br>' ;
     }
-    return [pic,video]
     } 
 
 
   function display(album) {
-    let pic;
-    let video;
     if (album == 1) {
         temp = print(PH)
       pic = temp[0];
