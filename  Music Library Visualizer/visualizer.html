@@ -1,0 +1,161 @@
+<!--
+Yining Hua, Fanghui He, Yovnne Zhu, Qiaqia Ji
+
+Coding Challenge 4: music library visualizer
+Objective: Extend your "playing favorites" sprint to remove duplicated information by implementing an Album object (which will have Songs as children), which will include the following information:
+artist
+album title
+release date
+cover art (a URL pointing to an image)
+and use this to generate a web page displaying your 3+ favorite album
+-->
+<!DOCTYPE html>
+<html>
+ <head>
+  <center>
+    <font color="white"> <h1>Century Best</h1></font>
+  </center>
+ </head>
+  <style>
+ body{
+ background-image: url("https://image.ibb.co/eYFzvx/psb.jpg");
+}
+ <body>
+ </style>
+ <body>
+ <div id="x"></div>
+ </body>
+
+ <script>
+  // Album constructor, parent object of song object
+function Album (artist, released_date, title,image,video){
+ this.image = image;
+ this.video = video;
+ this.artist = artist;
+ this.title = title;
+ this.released_date = released_date;
+ this.album_list = [];
+ this.add = function add(Song){
+  this.album_list.push(Song);
+    }
+}
+  
+  // constructor of song object. a child object of album and inherit album attrobutes.
+function Song (song_name, duration){
+ this.artist = Album.artist;
+ this.released_date = Album.released_date;
+ this.title = Album.title; 
+ this.song_name = song_name;
+ this.duration = duration; 
+};
+  
+  // Album1 and its children songs.
+  // Construct the album object
+  PH = new Album("Procol Harum", "1997/06/29", "A Whiter Shade of Pale","https://f4.bcbits.com/img/a3929070147_16.jpg","https://www.youtube.com/embed/Mb3iPP-tHdA");
+  //Construct song objects and put into the album.  
+  PH.add(ph1 = new Song("A Whiter Shade of Pale", "04:07") );
+  PH.add(ph2 = new Song("Conquistador", "02:40") );
+  PH.add(ph3 = new Song("She Wandered Through The Garden Fence", "03:26") );
+  PH.add(ph4 = new Song("Something Following Me", "03:40") );
+  PH.add(ph5 = new Song("Mabel", "01:55") );
+  PH.add(ph6 = new Song("Cerdes (Outside The Gates Of)", "05:03") );
+  PH.add(ph7 = new Song("A Christmas Camel", "04:51") );
+  PH.add(ph8 = new Song("Kaleidoscope", "02:56") );
+  PH.add(ph9 = new Song("Salad Days (Are Here Again)", "03:40") );
+  PH.add(ph10 = new Song("Good Captain Clack", "01:33") );
+  PH.add(ph11 = new Song("Repent Walpurgis", "01:33") );
+  PH.add(ph12 = new Song("Lime Street Blues", "03:01") );
+  PH.add(ph13 = new Song("Homburg", "03:56") );
+  PH.add(ph14 = new Song("Monsieur Armand", "02:25") );
+  PH.add(ph15 = new Song("Seem To Have The Blues All The Time", "02:46") );
+
+  // Album2 and ts children songs
+  DIIV = new Album("DIIV", "2012/06/25", "Oshin","https://f4.bcbits.com/img/a2808621709_16.jpg","https://www.youtube.com/embed/qrykQv3NFcU");
+  DIIV.add(d1=new Song("(Druun)", "02:07") );
+  DIIV.add(d2=new Song("Past Lives", "02:21") );
+  DIIV.add(d3=new Song("Human", "02:57") );
+  DIIV.add(d4=new Song("How Long Have You Known", "03:33") );
+  DIIV.add(d5=new Song("Wait", "03:16") );
+  DIIV.add(d6=new Song("Follow", "02:46") );
+  DIIV.add(d7=new Song("Home", "02:29") );
+  DIIV.add(d8=new Song("Doused", "03:43") );
+
+  // Album3 and its children songs
+  Minks = new Album("Minks", "2013/08/11", "X-Rated Poetry","http://gxiami.alicdn.com/images/album/img53/980553/9805531376980553.jpg","https://www.youtube.com/embed/nC_pgcyhhAI");
+  Minks.add(m1=new Song("Dead Believer Dog", "01:40") );
+  Minks.add(m2=new Song("Araby", "02:19") );
+  Minks.add(m3=new Song("Drunk Punks", "03:01") );
+  Minks.add(m4=new Song("Plastic Sea", "02:22") );
+  Minks.add(m5=new Song("Little Frawn", "02:32") );
+  Minks.add(m6=new Song("Tropic Meridian", "02:50") );
+  Minks.add(m7=new Song("Boxers", "02:38") );
+  Minks.add(m8=new Song("Annie", "02:48") );
+
+  // funtion for printing album information and song information
+  function print(Album){
+    let pic = Album.image;
+    let video = Album.video;
+    document.getElementById("title").innerHTML ='Album: '+Album.title;
+    document.getElementById("artist").innerHTML ='Artist: '+Album.artist;
+    document.getElementById("released_date").innerHTML ='Released Date: '+Album.released_date+'<br>';
+    document.getElementById("songs").innerHTML = null;
+    for (let i = 0; i<Album.album_list.length; i++){
+    document.getElementById("songs").innerHTML += Album.album_list[i].song_name+ "  "+Album.album_list[i].duration +'<br>'+'<br>' ;
+    }
+    return [pic,video]
+  } 
+
+  // A function for dispalying albums when clicking on buttons
+  function display(album) {
+    let pic;
+    let video;
+    if (album == 1) {
+        temp = print(PH)
+      pic = temp[0];
+        video = temp[1];
+      }
+    
+    if (album == 2) {
+      temp = print(DIIV)
+        pic = temp[0]
+        video = temp[1]
+      }
+    
+    if (album == 3){
+      temp = print(Minks)
+        pic = temp[0]
+        video = temp[1]
+      }
+    
+    // Update image and video information
+    document.getElementById('image').src = pic;
+    document.getElementById('video').src = video;
+
+}
+  
+ </script>
+
+<center>
+<!-- Default display of album cover and video. -->
+<img id="image" src = "https://f4.bcbits.com/img/a3929070147_16.jpg" width="200" height="200"> 
+<hr width="20%" color='white' SIZE=1>
+
+<!-- Print Song information -->
+<font color="white"><p id = "title"></p ></font>
+<font color="white"><p id = "artist"></p ></font>
+<font color="white"><p id = "released_date"></p ></font>
+<hr width="20%" color='white' SIZE=1>
+<font color="white"><p id= "songs"></p></font>
+
+<p>
+<!-- Call the display function we worte. -->
+<button type="button" onclick="display(1)">A Whiter Shade of Pale</button>
+<button type="button" onclick="display(2)">Oshin</button>
+<button type="button" onclick="display(3)">X-Rated Poetry</button>
+</p >
+
+ <iframe id = 'video' width="480" height="360" src="https://www.youtube.com/embed/Mb3iPP-tHdA" >
+</iframe>
+</center>
+  </body>
+</html>
