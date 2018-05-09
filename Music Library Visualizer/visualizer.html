@@ -95,8 +95,8 @@ function Song (song_name, duration){
   function print(Album){
     let pic = Album.image;
     let video = Album.video;
-    document.getElementById("title").innerHTML ='Album: ' + Album.title;
-    document.getElementById("artist").innerHTML ='Artist: ' + Album.artist;
+    document.getElementById("title").innerHTML ='Album: '+Album.title;
+    document.getElementById("artist").innerHTML ='Artist: '+Album.artist;
     document.getElementById("released_date").innerHTML ='Released Date: ' + Album.released_date+'<br>';
     document.getElementById("songs").innerHTML = null;
     for (let i = 0; i<Album.album_list.length; i++){
