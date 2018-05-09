@@ -1,0 +1,712 @@
+{
+ "cells": [
+  {
+   "cell_type": "code",
+   "execution_count": 2,
+   "metadata": {},
+   "outputs": [],
+   "source": [
+    "include(\"helpers.jl\");"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 3,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "cleantext (generic function with 1 method)"
+      ]
+     },
+     "execution_count": 3,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "function cleantext(text,stopwords)\n",
+    "    \n",
+    "    # Get full text without whitespace, punctuation, or stopwords\n",
+    "    idx = find(contains.(text,\"***\"))\n",
+    "    text = text[idx[1]+1:idx[2]-1]\n",
+    "    text = replace(join(text[text.!=\"\"],\" \"),r\"\\p{P}|[0-9]\",\" \")\n",
+    "    text = lowercase(replace(text, r\"\\s{2,}\",\" \"))\n",
+    "\n",
+    "    for w in stopwords\n",
+    "        text = replace.(text,\" \"*w*\" \",\" \");\n",
+    "    end\n",
+    "\n",
+    "    return text\n",
+    "end"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 4,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "cleantext2 (generic function with 1 method)"
+      ]
+     },
+     "execution_count": 4,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "function cleantext2(text)\n",
+    "    \n",
+    "    # Get full text without whitespace, punctuation, or stopwords\n",
+    "    idx = find(contains.(text,\"***\"))\n",
+    "    text = text[idx[1]+1:idx[2]-1]\n",
+    "    text = replace(join(text[text.!=\"\"],\" \"),r\"\\p{P}|[0-9]\",\" \")\n",
+    "    text = lowercase(replace(text, r\"\\s{2,}\",\" \"))\n",
+    "    return text\n",
+    "end"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 5,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "countwords (generic function with 1 method)"
+      ]
+     },
+     "execution_count": 5,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "function countwords(text)\n",
+    "    textSep = split(text,\" \")\n",
+    "    wordcounts = Dict{String,Float64}()\n",
+    "    for w in textSep\n",
+    "        wordcounts[w] = get(wordcounts, w, 0) + 1\n",
+    "    end\n",
+    "    \n",
+    "    return wordcounts\n",
+    "end"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 13,
+   "metadata": {},
+   "outputs": [
+    {
+     "data": {
+      "text/plain": [
+       "\"1059-0.txt\""
+      ]
+     },
+     "execution_count": 13,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "book1 = \"1013.txt.utf-8\"\n",
+    "book2 = \"1059-0.txt\""
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "----------------------------------------------------------------------------------------------------------\n",
+      "FILENAME: 1013.txt.utf-8\n",
+      "TOTAL SENTENCE: 4250\n",
+      "TOTAL WORDS: 69495.0\n",
+      "AVE. SENTENCE LENGTH: 16.351764705882353\n",
+      "TOP 10 WORDS: \n",
+      "\t\tcavor: 302.0\n",
+      "\t\tmoon: 212.0\n",
+      "\t\ttime: 173.0\n",
+      "\t\tsphere: 127.0\n",
+      "\t\tmade: 126.0\n",
+      "\t\tearth: 119.0\n",
+      "\t\tselenites: 111.0\n",
+      "\t\tback: 108.0\n",
+      "\t\tair: 106.0\n",
+      "\t\tworld: 101.0\n",
+      "----------------------------------------------------------------------------------------------------------\n",
+      "FILENAME: 1059-0.txt\n",
+      "TOTAL SENTENCE: 3274\n",
+      "TOTAL WORDS: 65865.0\n",
+      "AVE. SENTENCE LENGTH: 20.11759315821625\n",
+      "TOP 10 WORDS: \n",
+      "\t\tworld: 233.0\n",
+      "\t\tmen: 178.0\n",
+      "\t\tking: 177.0\n",
+      "\t\tman: 176.0\n",
+      "\t\ttime: 131.0\n",
+      "\t\tgreat: 127.0\n",
+      "\t\tlife: 101.0\n",
+      "\t\tmade: 91.0\n",
+      "\t\tpeople: 84.0\n",
+      "\t\tday: 80.0\n",
+      "----------------------------------------------------------------------------------------------------------\n",
+      "Similarity: 0.7915810682277922\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Load the file names, change the book1 and book2 to the name of your books, e.g. book1.txt, book2.txt\n",
+    "# Comment out the commented codes to read a folder of text\n",
+    "fnames = []\n",
+    "push!(fnames,book1)\n",
+    "push!(fnames,book2)\n",
+    "# dataLoc = \"books/\"\n",
+    "#fnames = readdir(dataLoc)\n",
+    "\n",
+    "ave_Sentence = []\n",
+    "total_Sentence=[]\n",
+    "# Iterate through file names\n",
+    "for i = 1:length(fnames)\n",
+    "    println(\"----------------------------------------------------------------------------------------------------------\")\n",
+    "    # Print the book name\n",
+    "    println(\"FILENAME: \",fnames[i])\n",
+    "    \n",
+    "    # Read in file and clean the text\n",
+    "    text = readlines(fnames[i])\n",
+    "    #text = readlines(dataLoc*fnames[i])\n",
+    "    \n",
+    "    # Count the number of lines\n",
+    "    counter = 0\n",
+    "    for line in text\n",
+    "        if contains(line,\".\")\n",
+    "          counter+=1 \n",
+    "        end\n",
+    "        if contains(line,\"?\")\n",
+    "            counter+=1\n",
+    "        end\n",
+    "        if contains(line,\"!\")\n",
+    "            counter+=1\n",
+    "        end\n",
+    "        if contains(line,\"...\")\n",
+    "            counter+=1\n",
+    "        end\n",
+    "    end\n",
+    "    println(\"TOTAL SENTENCE: \",counter)\n",
+    "    push!(total_Sentence,counter)\n",
+    "    \n",
+    "    #text1 used for count the total words and ave sentence length\n",
+    "    text1=cleantext(text,stopwords)\n",
+    "    #text2 used for top 10 words (otherwise the top 10 words will be meaningless, like \"the\", \"I\", etc.)\n",
+    "    text2=cleantext2(text)\n",
+    "\n",
+    "    # Count number of times each word appears\n",
+    "    wordCounts = countwords(text2)\n",
+    "    \n",
+    "    # Count the total number of words in the text\n",
+    "    num_of_words = 0\n",
+    "    for value in values(wordCounts)\n",
+    "        num_of_words+=value\n",
+    "    end\n",
+    "    println(\"TOTAL WORDS: \", num_of_words)\n",
+    "\n",
+    "    # average sentence length in each book\n",
+    "    println(\"AVE. SENTENCE LENGTH: \",num_of_words/counter)\n",
+    "    push!(ave_Sentence,num_of_words/counter)\n",
+    "    \n",
+    "    \n",
+    "    wordCounts = countwords(text1)\n",
+    "    # Sort and print the top 10 words with their counts without the stopwords\n",
+    "    rankedwords = sort(collect(wordCounts), by=x->x[2], rev=true)\n",
+    "    println(\"TOP 10 WORDS: \")\n",
+    "    for (key,value) in rankedwords[1:10,:]\n",
+    "        println(\"\\t\",\"\\t\",key,\": \",value)\n",
+    "    end\n",
+    "\n",
+    "end\n",
+    "    \n",
+    "# Simlarity Score\n",
+    "sort!(ave_Sentence)\n",
+    "sort!(total_Sentence)\n",
+    "aveSentencePercent = ave_Sentence[1]/ave_Sentence[2]\n",
+    "totalSentencePercent = total_Sentence[1]/total_Sentence[2]\n",
+    " println(\"----------------------------------------------------------------------------------------------------------\")\n",
+    "println(\"Similarity: \", aveSentencePercent*0.5+totalSentencePercent*0.5)\n",
+    "    "
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 10,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "search: \u001b[1mc\u001b[22m\u001b[1mo\u001b[22m\u001b[1mn\u001b[22m\u001b[1mt\u001b[22m\u001b[1ma\u001b[22m\u001b[1mi\u001b[22m\u001b[1mn\u001b[22m\u001b[1ms\u001b[22m\n",
+      "\n"
+     ]
+    },
+    {
+     "data": {
+      "text/markdown": [
+       "```\n",
+       "contains(fun, itr, x) -> Bool\n",
+       "```\n",
+       "\n",
+       "Returns `true` if there is at least one element `y` in `itr` such that `fun(y,x)` is `true`.\n",
+       "\n",
+       "```jldoctest\n",
+       "julia> vec = [10, 100, 200]\n",
+       "3-element Array{Int64,1}:\n",
+       "  10\n",
+       " 100\n",
+       " 200\n",
+       "\n",
+       "julia> contains(==, vec, 200)\n",
+       "true\n",
+       "\n",
+       "julia> contains(==, vec, 300)\n",
+       "false\n",
+       "\n",
+       "julia> contains(>, vec, 100)\n",
+       "true\n",
+       "\n",
+       "julia> contains(>, vec, 200)\n",
+       "false\n",
+       "```\n",
+       "\n",
+       "```\n",
+       "contains(haystack::AbstractString, needle::AbstractString)\n",
+       "```\n",
+       "\n",
+       "Determine whether the second argument is a substring of the first.\n",
+       "\n",
+       "```jldoctest\n",
+       "julia> contains(\"JuliaLang is pretty cool!\", \"Julia\")\n",
+       "true\n",
+       "```\n"
+      ],
+      "text/plain": [
+       "```\n",
+       "contains(fun, itr, x) -> Bool\n",
+       "```\n",
+       "\n",
+       "Returns `true` if there is at least one element `y` in `itr` such that `fun(y,x)` is `true`.\n",
+       "\n",
+       "```jldoctest\n",
+       "julia> vec = [10, 100, 200]\n",
+       "3-element Array{Int64,1}:\n",
+       "  10\n",
+       " 100\n",
+       " 200\n",
+       "\n",
+       "julia> contains(==, vec, 200)\n",
+       "true\n",
+       "\n",
+       "julia> contains(==, vec, 300)\n",
+       "false\n",
+       "\n",
+       "julia> contains(>, vec, 100)\n",
+       "true\n",
+       "\n",
+       "julia> contains(>, vec, 200)\n",
+       "false\n",
+       "```\n",
+       "\n",
+       "```\n",
+       "contains(haystack::AbstractString, needle::AbstractString)\n",
+       "```\n",
+       "\n",
+       "Determine whether the second argument is a substring of the first.\n",
+       "\n",
+       "```jldoctest\n",
+       "julia> contains(\"JuliaLang is pretty cool!\", \"Julia\")\n",
+       "true\n",
+       "```\n"
+      ]
+     },
+     "execution_count": 10,
+     "metadata": {},
+     "output_type": "execute_result"
+    }
+   ],
+   "source": [
+    "?contains"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 7,
+   "metadata": {
+    "scrolled": true
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "----------------------------------------------------------------------------------------------------------\n",
+      "FILENAME: .ipynb_checkpoints\n",
+      "TOTAL SENTENCE: 0\n"
+     ]
+    },
+    {
+     "ename": "LoadError",
+     "evalue": "\u001b[91mBoundsError: attempt to access 0-element Array{Int64,1} at index [1]\u001b[39m",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[91mBoundsError: attempt to access 0-element Array{Int64,1} at index [1]\u001b[39m",
+      "",
+      "Stacktrace:",
+      " [1] \u001b[1mcleantext\u001b[22m\u001b[22m\u001b[1m(\u001b[22m\u001b[22m::Array{String,1}, ::Array{String,1}\u001b[1m)\u001b[22m\u001b[22m at \u001b[1m./In[3]:5\u001b[22m\u001b[22m",
+      " [2] \u001b[1mmacro expansion\u001b[22m\u001b[22m at \u001b[1m./In[7]:24\u001b[22m\u001b[22m [inlined]",
+      " [3] \u001b[1manonymous\u001b[22m\u001b[22m at \u001b[1m./<missing>:?\u001b[22m\u001b[22m",
+      " [4] \u001b[1minclude_string\u001b[22m\u001b[22m\u001b[1m(\u001b[22m\u001b[22m::String, ::String\u001b[1m)\u001b[22m\u001b[22m at \u001b[1m./loading.jl:522\u001b[22m\u001b[22m"
+     ]
+    }
+   ],
+   "source": [
+    "# Load the file names\n",
+    "dataLoc = \"books/\";\n",
+    "fnames = readdir(dataLoc)\n",
+    "\n",
+    "# Iterate through file names\n",
+    "for i = 1:length(fnames)\n",
+    "    println(\"----------------------------------------------------------------------------------------------------------\")\n",
+    "    # Print the book name\n",
+    "    println(\"FILENAME: \",fnames[i])\n",
+    "    \n",
+    "    # Read in file and clean the text\n",
+    "    text = readlines(dataLoc*fnames[i])\n",
+    "    \n",
+    "    # Count the number of lines\n",
+    "    counter = 0\n",
+    "    for line in text\n",
+    "        if line != \"\"\n",
+    "          counter+=1 \n",
+    "        end\n",
+    "    end\n",
+    "    println(\"TOTAL SENTENCE: \",counter)\n",
+    "    \n",
+    "    #text1 used for count the total words and ave sentence length\n",
+    "    text1=cleantext(text,stopwords)\n",
+    "    #text2 used for top 10 words (otherwise top 10 words will be meaningless, like \"the\", \"I\", etc.)\n",
+    "    text2=cleantext2(text)\n",
+    "\n",
+    "    # Count number of times each word appears\n",
+    "    wordCounts = countwords(text2)\n",
+    "    \n",
+    "    # Count the total number of words in the text\n",
+    "    num_of_words = 0\n",
+    "    for value in values(wordCounts)\n",
+    "        num_of_words+=value\n",
+    "    end\n",
+    "    println(\"TOTAL WORDS: \", num_of_words)\n",
+    "\n",
+    "    # average sentence length in each book\n",
+    "    println(\"AVE. SENTENCE LENGTH: \",num_of_words/counter)\n",
+    "    \n",
+    "    \n",
+    "    wordCounts = countwords(text1)\n",
+    "    # Sort and print the top 10 words with their counts without the stopwords\n",
+    "    rankedwords = sort(collect(wordCounts), by=x->x[2], rev=true)\n",
+    "    print(\"TOP 10 WORDS: \")\n",
+    "    for (key,value) in rankedwords[1:10,:]\n",
+    "        println(key,\": \",value)\n",
+    "    end\n",
+    "    \n",
+    "end"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 20,
+   "metadata": {
+    "scrolled": true
+   },
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "1013.txt.utf-8\n",
+      "Total number of lines: 6282\n",
+      "Total number of words: 25110.0\n",
+      "Average sentence length: 3.997134670487106\n",
+      "Pair{String,Float64}[\"cavor\"=>302.0; \"moon\"=>212.0; \"time\"=>173.0; \"sphere\"=>127.0; \"made\"=>126.0; \"earth\"=>119.0; \"selenites\"=>111.0; \"back\"=>108.0; \"air\"=>106.0; \"world\"=>101.0]\n",
+      "1059-0.txt\n",
+      "Total number of lines: 6133\n",
+      "Total number of words: 26357.0\n",
+      "Average sentence length: 4.297570520136964\n",
+      "Pair{String,Float64}[\"world\"=>233.0; \"men\"=>178.0; \"king\"=>177.0; \"man\"=>176.0; \"time\"=>131.0; \"great\"=>127.0; \"life\"=>101.0; \"made\"=>91.0; \"people\"=>84.0; \"day\"=>80.0]\n",
+      "159.txt.utf-8\n",
+      "Total number of lines: 4393\n",
+      "Total number of words: 17017.0\n",
+      "Average sentence length: 3.873662645117232\n",
+      "Pair{String,Float64}[\"man\"=>214.0; \"montgomery\"=>205.0; \"moreau\"=>144.0; \"beast\"=>109.0; \"men\"=>101.0; \"face\"=>89.0; \"eyes\"=>88.0; \"heard\"=>82.0; \"back\"=>80.0; \"began\"=>80.0]\n",
+      "23218-0.txt\n",
+      "Total number of lines: 644\n",
+      "Total number of words: 1513.0\n",
+      "Average sentence length: 2.349378881987578\n",
+      "Pair{String,Float64}[\"room\"=>35.0; \"candle\"=>21.0; \"door\"=>18.0; \"man\"=>17.0; \"hand\"=>13.0; \"red\"=>13.0; \"candles\"=>13.0; \"table\"=>12.0; \"stood\"=>12.0; \"darkness\"=>10.0]\n",
+      "35.txt.utf-8\n",
+      "Total number of lines: 3156\n",
+      "Total number of words: 12193.0\n",
+      "Average sentence length: 3.8634347275031686\n",
+      "Pair{String,Float64}[\"time\"=>201.0; \"machine\"=>86.0; \"man\"=>70.0; \"traveller\"=>61.0; \"white\"=>59.0; \"felt\"=>57.0; \"thought\"=>57.0; \"weena\"=>54.0; \"world\"=>52.0; \"hand\"=>49.0]\n",
+      "36.txt.utf-8\n",
+      "Total number of lines: 5752\n",
+      "Total number of words: 24324.0\n",
+      "Average sentence length: 4.228789986091794\n",
+      "Pair{String,Float64}[\"martians\"=>164.0; \"people\"=>159.0; \"man\"=>126.0; \"time\"=>122.0; \"black\"=>122.0; \"men\"=>110.0; \"brother\"=>104.0; \"road\"=>104.0; \"night\"=>102.0; \"pit\"=>83.0]\n",
+      "5230.txt.utf-8\n",
+      "Total number of lines: 5008\n",
+      "Total number of words: 19651.0\n",
+      "Average sentence length: 3.923921725239617\n",
+      "Pair{String,Float64}[\"man\"=>260.0; \"kemp\"=>245.0; \"mr\"=>223.0; \"invisible\"=>181.0; \"door\"=>171.0; \"hall\"=>160.0; \"marvel\"=>127.0; \"room\"=>118.0; \"voice\"=>92.0; \"back\"=>91.0]\n",
+      "524-0.txt\n",
+      "Total number of lines: 9402\n",
+      "Total number of words: 36118.0\n",
+      "Average sentence length: 3.841523080195703\n",
+      "Pair{String,Float64}[\"veronica\"=>731.0; \"ann\"=>715.0; \"life\"=>208.0; \"man\"=>194.0; \"love\"=>188.0; \"time\"=>185.0; \"miss\"=>171.0; \"father\"=>171.0; \"mr\"=>168.0; \"capes\"=>162.0]\n",
+      "775-0.txt\n",
+      "Total number of lines: 7826\n",
+      "Total number of words: 33969.0\n",
+      "Average sentence length: 4.340531561461794\n",
+      "Pair{String,Float64}[\"graham\"=>580.0; \"man\"=>355.0; \"people\"=>275.0; \"men\"=>207.0; \"ostrog\"=>187.0; \"council\"=>153.0; \"great\"=>149.0; \"time\"=>143.0; \"world\"=>127.0; \"face\"=>125.0]\n",
+      "780-0.txt\n",
+      "Total number of lines: 9113\n",
+      "Total number of words: 41306.0\n",
+      "Average sentence length: 4.532645671019423\n",
+      "Pair{String,Float64}[\"bert\"=>616.0; \"time\"=>228.0; \"air\"=>206.0; \"man\"=>181.0; \"men\"=>171.0; \"great\"=>165.0; \"world\"=>155.0; \"war\"=>153.0; \"people\"=>150.0; \"german\"=>146.0]\n",
+      "pg11696.txt\n",
+      "Total number of lines: 7410\n",
+      "Total number of words: 28905.0\n",
+      "Average sentence length: 3.9008097165991904\n",
+      "Pair{String,Float64}[\"redwood\"=>325.0; \"bensington\"=>210.0; \"cossar\"=>174.0; \"food\"=>174.0; \"great\"=>161.0; \"world\"=>157.0; \"man\"=>155.0; \"time\"=>138.0; \"mr\"=>133.0; \"made\"=>114.0]\n",
+      "pg31547.txt\n",
+      "Total number of lines: 1370\n",
+      "Total number of words: 3460.0\n",
+      "Average sentence length: 2.5255474452554743\n",
+      "Pair{String,Float64}[\"red\"=>102.0; \"slim\"=>71.0; \"industrialist\"=>42.0; \"astronomer\"=>41.0; \"animals\"=>30.0; \"ship\"=>28.0; \"looked\"=>26.0; \"explorer\"=>22.0; \"thought\"=>21.0; \"sir\"=>20.0]\n",
+      "pg7308.txt\n",
+      "Total number of lines: 6982\n",
+      "Total number of words: 29137.0\n",
+      "Average sentence length: 4.173159553136637\n",
+      "Pair{String,Float64}[\"mr\"=>881.0; \"polly\"=>762.0; \"man\"=>156.0; \"uncle\"=>152.0; \"time\"=>141.0; \"johnson\"=>133.0; \"miriam\"=>132.0; \"mrs\"=>124.0; \"back\"=>123.0; \"jim\"=>121.0]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Load the file names\n",
+    "dataLoc = \"books/\";\n",
+    "fnames = readdir(dataLoc)\n",
+    "\n",
+    "# Iterate through file names\n",
+    "for i = 1:length(fnames)\n",
+    "    # Print the book name\n",
+    "    println(fnames[i])\n",
+    "    \n",
+    "    # Read in file and clean the text\n",
+    "    text = readlines(dataLoc*fnames[i])\n",
+    "    \n",
+    "    # Count the number of lines\n",
+    "    counter = 0\n",
+    "    for line in text\n",
+    "        if line != \"\"\n",
+    "          counter+=1 \n",
+    "        end\n",
+    "    end\n",
+    "    println(\"Total number of lines: \",counter)\n",
+    "    \n",
+    "    text=cleantext(text,stopwords)\n",
+    "\n",
+    "    # Count number of times each word appears\n",
+    "    wordCounts = countwords(text)\n",
+    "    \n",
+    "    # Count the total number of words in the text\n",
+    "    num_of_words = 0\n",
+    "    for value in values(wordCounts)\n",
+    "        num_of_words+=value\n",
+    "    end\n",
+    "    println(\"Total number of words: \", num_of_words)\n",
+    "\n",
+    "    # average sentence length in each book\n",
+    "    println(\"Average sentence length: \",num_of_words/counter)\n",
+    "    \n",
+    "    # Sort and print the top 10 words with their counts\n",
+    "    rankedwords = sort(collect(wordCounts), by=x->x[2], rev=true)\n",
+    "    println(rankedwords[1:10,:])\n",
+    "    \n",
+    "end"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 21,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "Pair{String,Float64}[\"man\"=>1996.0; \"time\"=>1617.0; \"mr\"=>1527.0; \"people\"=>1128.0; \"world\"=>1119.0; \"men\"=>1112.0; \"made\"=>1042.0; \"back\"=>989.0; \"great\"=>933.0; \"face\"=>768.0]\n"
+     ]
+    }
+   ],
+   "source": [
+    "# Create an array to store the counts\n",
+    "allranks = Array{Any}(length(fnames))\n",
+    "\n",
+    "# Iterate through file names\n",
+    "for i = 1:length(fnames)\n",
+    "\n",
+    "    # Read in file and clean the text\n",
+    "    text = readlines(dataLoc*fnames[i])\n",
+    "    text = cleantext(text,stopwords)\n",
+    "\n",
+    "    # Count number of times each word appears\n",
+    "    allranks[i] = countwords(text)\n",
+    "end\n",
+    "\n",
+    "# Merge the counts from all files\n",
+    "globalranks = allranks[1]\n",
+    "for i = 2:length(allranks)\n",
+    "    globalranks = merge(+,globalranks,allranks[i])\n",
+    "end\n",
+    "\n",
+    "# Sort and print the top 10 words with their counts\n",
+    "println(sort(collect(globalranks), by=x->x[2], rev=true)[1:10,:])"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 29,
+   "metadata": {},
+   "outputs": [
+    {
+     "name": "stdout",
+     "output_type": "stream",
+     "text": [
+      "\"cavorite\"=>1.0; \"lunar\"=>1.0; \"cavor\"=>1.0; \"selenites\"=>1.0; \"selenite\"=>0.9767441860465116; \"cavern\"=>0.9285714285714286; \"sphere\"=>0.9071428571428571; \"crater\"=>0.875; \"moon\"=>0.8153846153846154; \"earth\"=>0.3901639344262295; \n",
+      "\"karenin\"=>1.0; \"fowler\"=>1.0; \"holsten\"=>1.0; \"firmin\"=>1.0; \"leblanc\"=>1.0; \"king\"=>0.885; \"atomic\"=>0.8805970149253731; \"barnet\"=>0.8571428571428571; \"bombs\"=>0.7411764705882353; \"section\"=>0.7380952380952381; \n",
+      "\"moreau\"=>1.0; \"puma\"=>1.0; \"montgomery\"=>1.0; \"enclosure\"=>0.9333333333333333; \"beast\"=>0.8195488721804511; \"ling\"=>0.7843137254901961; \"brute\"=>0.6956521739130435; \"beach\"=>0.6632653061224489; \"pain\"=>0.5520833333333334; \"island\"=>0.5161290322580645; \n",
+      "\"candle\"=>0.5675675675675675; \"room\"=>0.06862745098039216; \"table\"=>0.055299539170506916; \"door\"=>0.032432432432432434; \"eyes\"=>0.01291248206599713; \"man\"=>0.008517034068136272; \n",
+      "\"psychologist\"=>1.0; \"morlocks\"=>1.0; \"weena\"=>1.0; \"traveller\"=>0.9242424242424242; \"medical\"=>0.5714285714285714; \"machine\"=>0.2606060606060606; \"gallery\"=>0.18095238095238095; \"sun\"=>0.14832535885167464; \"felt\"=>0.13043478260869565; \"time\"=>0.12430426716141002; \n",
+      "\"woking\"=>1.0; \"artilleryman\"=>1.0; \"martian\"=>1.0; \"martians\"=>0.9939393939393939; \"cylinder\"=>0.8918918918918919; \"mars\"=>0.8775510204081632; \"ray\"=>0.8222222222222222; \"brother\"=>0.6190476190476191; \"pit\"=>0.5971223021582733; \"heat\"=>0.5876288659793815; \n",
+      "\"adye\"=>1.0; \"henfrey\"=>1.0; \"mariner\"=>1.0; \"kemp\"=>0.9919028340080972; \"cuss\"=>0.9705882352941176; \"huxter\"=>0.9705882352941176; \"iping\"=>0.96875; \"bunting\"=>0.9574468085106383; \"marvel\"=>0.9202898550724637; \"invisible\"=>0.8080357142857143; \n",
+      "\"veronica\"=>1.0; \"miniver\"=>1.0; \"vee\"=>1.0; \"ramage\"=>1.0; \"ann\"=>1.0; \"capes\"=>1.0; \"|\"=>0.8611111111111112; \"aunt\"=>0.8428571428571429; \"miss\"=>0.8423645320197044; \"love\"=>0.6988847583643123; \n",
+      "\"ostrog\"=>1.0; \"graham\"=>1.0; \"lincoln\"=>0.9733333333333334; \"sleeper\"=>0.9523809523809523; \"council\"=>0.7463414634146341; \"tramp\"=>0.7; \"stage\"=>0.5909090909090909; \"master\"=>0.5401459854014599; \"city\"=>0.5315315315315315; \"shouting\"=>0.4857142857142857; \n",
+      "\"germans\"=>1.0; \"butteridge\"=>1.0; \"bert\"=>1.0; \"grubb\"=>1.0; \"edna\"=>1.0; \"smallways\"=>1.0; \"airships\"=>0.9906542056074766; \"asiatic\"=>0.9824561403508771; \"prince\"=>0.9586206896551724; \"tom\"=>0.9545454545454546; \n",
+      "\"cossar\"=>1.0; \"hickleybrow\"=>1.0; \"caddles\"=>1.0; \"skinner\"=>1.0; \"redwood\"=>1.0; \"winkles\"=>1.0; \"thir\"=>1.0; \"caterham\"=>1.0; \"boomfood\"=>1.0; \"herakleophorbia\"=>1.0; \n",
+      "\"slim\"=>1.0; \"dad\"=>1.0; \"industrialist\"=>1.0; \"explorer\"=>0.9565217391304348; \"astronomer\"=>0.9534883720930233; \"merchant\"=>0.8333333333333334; \"planets\"=>0.7; \"circus\"=>0.6956521739130435; \"worlds\"=>0.5714285714285714; \"lunch\"=>0.37209302325581395; \n",
+      "\"rumbold\"=>1.0; \"parsons\"=>1.0; \"johnson\"=>1.0; \"kik\"=>1.0; \"rusper\"=>1.0; \"miriam\"=>1.0; \"annie\"=>1.0; \"fishbourne\"=>1.0; \"polly\"=>1.0; \"larkins\"=>1.0; \n"
+     ]
+    },
+    {
+     "ename": "LoadError",
+     "evalue": "\u001b[91mUndefVarError: rankedwords not defined\u001b[39m",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[91mUndefVarError: rankedwords not defined\u001b[39m",
+      "",
+      "Stacktrace:",
+      " [1] \u001b[1manonymous\u001b[22m\u001b[22m at \u001b[1m./<missing>:?\u001b[22m\u001b[22m",
+      " [2] \u001b[1minclude_string\u001b[22m\u001b[22m\u001b[1m(\u001b[22m\u001b[22m::String, ::String\u001b[1m)\u001b[22m\u001b[22m at \u001b[1m./loading.jl:522\u001b[22m\u001b[22m"
+     ]
+    }
+   ],
+   "source": [
+    "# Create an array to store the counts\n",
+    "allranks = Array{Any}(length(fnames))\n",
+    "\n",
+    "# Iterate through file names\n",
+    "for i = 1:length(fnames)\n",
+    "\n",
+    "    # Read in file and clean the text\n",
+    "    text = readlines(dataLoc*fnames[i])\n",
+    "    text = cleantext(text,stopwords)\n",
+    "\n",
+    "    # Count number of times each word appears\n",
+    "    allranks[i] = countwords(text)\n",
+    "end\n",
+    "\n",
+    "# Merge the counts from all files\n",
+    "globalranks = allranks[1]\n",
+    "for i = 2:length(allranks)\n",
+    "    globalranks = merge(+,globalranks,allranks[i])\n",
+    "end\n",
+    "\n",
+    "# Iterate through each set of word counts\n",
+    "for i = 1:length(allranks)\n",
+    "\n",
+    "    # Calculate normalized score\n",
+    "    allranks[i] = filter!((k,v)-> v > quantile(collect(values(allranks[i])), .98), allranks[i])\n",
+    "    normrank = merge(/,allranks[i],filter((k,v)->haskey(allranks[i],k), globalranks))\n",
+    "\n",
+    "    # Sort and print the top 10 words with their normalized counts\n",
+    "    rankedwords = sort(collect(normrank), by=x->x[2], rev=true)\n",
+    "    #println(rankedwords[1:min(10,length(allranks[i])),:])\n",
+    "    for tuple in rankedwords[1:min(10,length(allranks[i])),:]\n",
+    "        print(tuple,\"; \")\n",
+    "    end\n",
+    "    println()\n",
+    "end\n"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": 23,
+   "metadata": {},
+   "outputs": [
+    {
+     "ename": "LoadError",
+     "evalue": "\u001b[91mUndefVarError: rankedwords not defined\u001b[39m",
+     "output_type": "error",
+     "traceback": [
+      "\u001b[91mUndefVarError: rankedwords not defined\u001b[39m",
+      "",
+      "Stacktrace:",
+      " [1] \u001b[1manonymous\u001b[22m\u001b[22m at \u001b[1m./<missing>:?\u001b[22m\u001b[22m",
+      " [2] \u001b[1minclude_string\u001b[22m\u001b[22m\u001b[1m(\u001b[22m\u001b[22m::String, ::String\u001b[1m)\u001b[22m\u001b[22m at \u001b[1m./loading.jl:522\u001b[22m\u001b[22m"
+     ]
+    }
+   ],
+   "source": []
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Julia 0.6.2",
+   "language": "julia",
+   "name": "julia-0.6"
+  },
+  "language_info": {
+   "file_extension": ".jl",
+   "mimetype": "application/julia",
+   "name": "julia",
+   "version": "0.6.2"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 2
+}
