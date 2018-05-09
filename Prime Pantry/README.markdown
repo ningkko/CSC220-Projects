@@ -1,4 +1,4 @@
-# CSC220 Coding Challenge 3: Prime Pantry
+# Prime Pantry
 
 ## Objective:
 	•	Given a dictionary of items and their (integer, positive-valued) item weights,
