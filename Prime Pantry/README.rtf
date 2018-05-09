@@ -1,0 +1,136 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1504\cocoasubrtf830
+{\fonttbl\f0\fnil\fcharset0 HelveticaNeue;\f1\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;\red27\green31\blue34;\red255\green255\blue255;\red10\green77\blue204;
+\red203\green35\blue57;\red6\green33\blue79;\red7\green68\blue184;\red21\green23\blue26;}
+{\*\expandedcolortbl;;\cssrgb\c14118\c16078\c18039;\cssrgb\c100000\c100000\c100000;\cssrgb\c1176\c40000\c83922;
+\cssrgb\c84314\c22745\c28627;\cssrgb\c1176\c18431\c38431;\cssrgb\c0\c36078\c77255;\cssrgb\c10588\c12157\c13725\c29804;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid2\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li1440\lin1440 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid301\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid4}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\partightenfactor0
+
+\f0\b\fs64 \cf2 \cb3 \expnd0\expndtw0\kerning0
+CSC220 Coding Challenge 3: Prime Pantry\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\fs48 \cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 Objective:\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0
+\b0\fs32 \cf2 \cb3 \kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+Given a dictionary of items and their (integer, positive-valued) item weights,\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+identify whether or not there is a subset that could fill a Prime Pantry Box to exactly 100% and report which items are in the subset ( report the number of items in the subset that fills the box to 100% and return all possible solutions )\cb1 \
+\ls1\ilvl0\cb3 \kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+If there is no solution, returns the closest-without-going-over solution ##Note: We're unable to figure out a way to read in input from the command line. So in the test we put the input in main(). If it doesn\'92t work, please delete the input line and use the following:\
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls1\ilvl0
+\f1\fs24 \cf2 \cb1 \kerning1\expnd0\expndtw0           \
+\pard\tx940\tx1440\pardeftab720\li1440\fi-1440\partightenfactor0
+\ls1\ilvl1\cf2 		 \expnd0\expndtw0\kerning0
+items\cf5 =\cf2  \{\cf6 "a"\cf2 :\cf7 3\cf2 ,\cf6 "b"\cf2 :\cf7 2\cf2 ,\cf6 "c"\cf2 :\cf7 5\cf2 ,\cf6 "d"\cf2 :\cf7 1\cf2 ,\cf6 "e"\cf2 :\cf7 2\cf2 \}\
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth1000\clftsWidth3 \clminw1000 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl200 \clpadr200 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth18560\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl200 \clpadr200 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf8 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf2      n_items \cf5 =\cf2  \cf7 5\
+\cf2      total = 5\cell \row
+
+\itap1\trowd \taflags1 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalt \clshdrawnil \clwWidth1000\clftsWidth3 \clminw1000 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl200 \clpadr200 \gaph\cellx4320
+\clvertalt \clshdrawnil \clwWidth18560\clftsWidth3 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadl200 \clpadr200 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf8 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf2 \cell \lastrow\row
+\pard\tx720\pardeftab720\partightenfactor0
+
+\f0\fs32 \cf2 	\
+\pard\pardeftab720\partightenfactor0
+
+\b\fs48 \cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 Installation and set-up\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls2\ilvl0
+\b0\fs32 \cf2 \cb3 \kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+Download the file and run it in Python 3.\cb1 \
+\ls2\ilvl0\cb3 \kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+Note: This pragram is written with regard to Python 3, so you might want to run it in Python 3!\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\b\fs48 \cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 Running the tests\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls3\ilvl0
+\b0\fs32 \cf2 \cb3 \kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+Input: a file with a dictionary, the num of items, the max total\cb1 \
+\ls3\ilvl0\cb3 \kerning1\expnd0\expndtw0 {\listtext	\'95	}\expnd0\expndtw0\kerning0
+Output: subsets of the items which can add up to the max total, or are closed to the max total without going over it\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\b\fs40 \cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 Example 1\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\b0\fs32 \cf2 \cb3 Nene-2:desktop Nene$ python test.py 4 possible sets of items:\cb1 \
+\cb3 Set1 -> 2 items: 1.a 2.b\cb1 \
+\cb3 Set2 -> 1 items: 1.c\cb1 \
+\cb3 Set3 -> 2 items: 1.a 2.e\cb1 \
+\cb3 Set4 -> 3 items: 1.b 2.d 3.e\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\b\fs48 \cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 Efficiency test\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\b0\fs32 \cf2 \cb3 Since for every item we loop through the previous items to see what number we can get, the worset O is about O(n*t) in which n is the num of items and t is the total\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\b\fs48 \cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 References\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\b0\fs32 \cf2 \cb3 Inspired by:\cb1 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\partightenfactor0
+\ls4\ilvl0\cf4 \cb3 \kerning1\expnd0\expndtw0 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://stackoverflow.com/questions/8266529/python-convert-string-to-list"}}{\fldrslt \expnd0\expndtw0\kerning0
+https://stackoverflow.com/questions/8266529/python-convert-string-to-list}}\cf2 \cb1 \expnd0\expndtw0\kerning0
+\
+\ls4\ilvl0\cf4 \cb3 \kerning1\expnd0\expndtw0 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://stackoverflow.com/questions/5618878/how-to-convert-list-to-string"}}{\fldrslt \expnd0\expndtw0\kerning0
+https://stackoverflow.com/questions/5618878/how-to-convert-list-to-string}}\cf2 \cb1 \expnd0\expndtw0\kerning0
+\
+\ls4\ilvl0\cf4 \cb3 \kerning1\expnd0\expndtw0 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://stackoverflow.com/questions/4326658/how-to-index-into-a-dictionary"}}{\fldrslt \expnd0\expndtw0\kerning0
+https://stackoverflow.com/questions/4326658/how-to-index-into-a-dictionary}}\cf2 \cb1 \expnd0\expndtw0\kerning0
+\
+\ls4\ilvl0\cf4 \cb3 \kerning1\expnd0\expndtw0 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://stackoverflow.com/questions/6667201/how-to-define-a-two-dimensional-array-in-python"}}{\fldrslt \expnd0\expndtw0\kerning0
+https://stackoverflow.com/questions/6667201/how-to-define-a-two-dimensional-array-in-python}}\cf2 \cb1 \expnd0\expndtw0\kerning0
+\
+\ls4\ilvl0\cf4 \cb3 \kerning1\expnd0\expndtw0 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://www.thegeekstuff.com/2013/06/python-list/?utm_source=feedly"}}{\fldrslt \expnd0\expndtw0\kerning0
+https://www.thegeekstuff.com/2013/06/python-list/?utm_source=feedly}}\cf2 \cb1 \expnd0\expndtw0\kerning0
+\
+\ls4\ilvl0\cf4 \cb3 \kerning1\expnd0\expndtw0 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://stackoverflow.com/questions/26544091/checking-if-type-list-in-python/26544117"}}{\fldrslt \expnd0\expndtw0\kerning0
+https://stackoverflow.com/questions/26544091/checking-if-type-list-in-python/26544117}}\cf2 \cb1 \expnd0\expndtw0\kerning0
+\
+\ls4\ilvl0\cf4 \cb3 \kerning1\expnd0\expndtw0 {\listtext	\'95	}{\field{\*\fldinst{HYPERLINK "https://stackoverflow.com/questions/32705826/check-if-list-contains-a-type"}}{\fldrslt \expnd0\expndtw0\kerning0
+https://stackoverflow.com/questions/32705826/check-if-list-contains-a-type}}\cf2 \cb1 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720\partightenfactor0
+
+\b\fs48 \cf4 \
+\pard\pardeftab720\partightenfactor0
+\cf2 \cb3 Contributers\cb1 \
+\pard\pardeftab720\partightenfactor0
+
+\b0\fs32 \cf2 \cb3 Fanghui He, Yining Hua, Yvonne Zhu, Qiaqia Ji}
