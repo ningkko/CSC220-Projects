@@ -1,0 +1,165 @@
+/* General */
+
+html {
+  font-family: 'Raleway', sans-serif;
+  font-size: 10px;
+    
+    
+}
+
+body {
+  width: 800px;
+  margin: 0 auto;
+}
+
+/* Typography */
+
+h1, h2, h3 {
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+  margin: 0;
+  text-align: center;
+}
+
+h1 {
+  font-size: 5rem;
+  background: url(https://specials-images.forbesimg.com/imageserve/55b8ea84e4b05c2c34324135/300x300.jpg?fit=scale&background=000000) no-repeat 20% center, url(https://specials-images.forbesimg.com/imageserve/55b8ea84e4b05c2c34324135/300x300.jpg?fit=scale&background=000000) no-repeat 80% center;
+  background-size: 48px 48px;
+}
+
+h2 {
+  font-size: 1.2rem;
+  word-break:normal;
+  color: white;
+  text-align: right;
+  width: 18rem;
+  position: absolute;
+  right: 4%;
+  z-index: 5000;
+  line-height: 3.5rem;
+  padding-top: 0.2rem;
+}
+
+p, label, input, select, button, li {
+  font-size: 1.5rem;
+}
+
+li {
+  line-height: 1.5;
+}
+
+/* block styling */
+
+header, aside, main, footer {
+  padding: 20px;
+}
+
+header {
+  border: 5px solid lightgray;
+  border-bottom: 0;
+}
+
+aside {
+  border-right: 5px solid lightgray;
+}
+
+body > div {
+  border: 5px solid lightgray;
+  display: flex;
+}
+
+footer {
+  border: 5px solid lightgray;
+  border-top: 0;
+}
+
+aside {
+  flex: 3;
+}
+
+main {
+  flex: 7;
+}
+
+/* Form styling */
+
+aside {
+  display: flex;
+  flex-flow: column;
+  align-items: stretch;
+}
+
+aside div {
+  margin-bottom: 50px;
+}
+
+label, select, input {
+  display: block;
+}
+
+label {
+  margin-bottom: 5px;
+}
+
+select, input, button {
+  width: 100%;
+}
+
+input {
+  background: white;
+  box-shadow: inset 1px 1px 1px lightgray;
+  color: white;
+  border: none;
+  padding: 5px;
+  width: 201.5px;
+}
+
+button {
+  background: lightgray;
+  color: white;
+  padding: 5px 0;
+  border: none;
+  border-radius: 10px;
+  box-shadow: inset 1px 1px 2px white, inset -1px -1px 2px #ccc;
+}
+
+/* Styling the products */
+
+main {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+section {
+  width: 45%;
+  margin: 5px;
+  background-color: lightgray;
+  position: relative;
+  height: 215px;
+}
+
+
+section img {
+  width: 100%;
+  display: block;
+  position: absolute;
+  bottom: 0px;
+}
+
+section p {
+    
+  font-size:1.2rem;
+  color: black;
+  height: 5.4rem;
+  background: white;
+  position: absolute;
+  border-color: black;
+  word-break:break-word;
+  text-align: left;
+  word-spacing:10vw;
+  box-shadow: 1.5px 1.5px 1px white;
+  right: 2px;
+  bottom: 107px;
+  z-index: 1000;
+}
+
