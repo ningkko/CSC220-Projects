@@ -10,17 +10,17 @@ a "similarity score" indicating how similar the two books are (how you define th
 ## Examples
 --------------------------------------------------------------
             FILENAME: book1.txt
-         TOTAL WORDS: < words in book1.txt>
-     TOTAL SENTENCES: < sentences in book1.txt>
-AVG. SENTENCE LENGTH: < avg.  words per sentence in book1.txt>
+         TOTAL WORDS: < #words in book1.txt>
+     TOTAL SENTENCES: < #sentences in book1.txt>
+AVG. SENTENCE LENGTH: < avg.  #words per sentence in book1.txt>
         TOP 10 WORDS: word1: <count>
                       ... 
                       word10: <count>
 --------------------------------------------------------------
             FILENAME: book2.txt
-         TOTAL WORDS: < words in book2.txt>
-     TOTAL SENTENCES: < sentences in book2.txt>
-AVG. SENTENCE LENGTH: < avg.  words per sentence in book2.txt>
+         TOTAL WORDS: < #words in book2.txt>
+     TOTAL SENTENCES: < #sentences in book2.txt>
+AVG. SENTENCE LENGTH: < avg.  #words per sentence in book2.txt>
         TOP 10 WORDS: word1: <count>
                       ...
                       word10: <count>
