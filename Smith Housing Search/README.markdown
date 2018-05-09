@@ -8,9 +8,9 @@ Area of campus
 Year built
 Year renovated
 Total capacity
-# singles
-# doubles
-# triples
+#singles
+#doubles
+#triples
 Approximate number sharing a bathroom
 Accessible?
 Has elevator?
