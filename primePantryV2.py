@@ -1,3 +1,4 @@
+#Yining Hua, Fanghui He, Yovnne Zhu, Qiaqia Ji
 # Coding challenge 3
 # Given a dictionary of items and their (integer, positive-valued) item weights
 # identify whether or not there is a subset that could fill a Prime Pantry Box to exactly 100%
@@ -28,24 +29,27 @@ def primePantry(items, n_items, total):
     for item in items:
         #loop through "total" in each unit
         for j in range(total+1):
-
+            #If the volumn of the item == the current package volumn
             if (j==items[item]) and subsets[i][j] == []:
                 subsets[i][j].append(item.split())
 
             elif (j==items[item]) and subsets[i][j] != []:
                 subsets[i][j]+=item.split()
+
+            #If not, trace back to previous items to see if 
+            #the current volumn + the previous solutions == current package volumn.
             for index in range(i):
-                if subsets[index][j]!=[] and (items[item]+j)<=total:
+                #If under the current package volumn, previous items have solutions
+                if (items[item]+j)<=total and subsets[index][j]!=[]:
 
-                        list2 = subsets[index][j]
-                        for object in subsets[index][j]:
-                            if isinstance(object, list):
-                                subsets[i][items[item]+j].append(object+item.split())
-                            else:
-                                subsets[i][items[item]+j].append(object.split())
-                                subsets[i][items[item]+j].append(item.split())
-
+                    for object in subsets[index][j]:
+                        if isinstance(object, list):
+                            subsets[i][items[item]+j].append(object+item.split())
+                        else:
+                            subsets[i][items[item]+j].append(object.split())
+                            subsets[i][items[item]+j].append(item.split())
         i+=1
+
     result = []
     # return the closest-without-going-over solutions
     for j in range(total,0,-1):
@@ -66,11 +70,9 @@ def primePantry(items, n_items, total):
 def main():
     
     # this is the dictionary of items
-    dictionary = ast.literal_eval(sys.argv[1])
-
+    items = ast.literal_eval(sys.argv[1])
     # this is the number of items
-    nItems = eval(sys.argv[2])
-
+    n_items = eval(sys.argv[2])
     # this is the total you want to reach
     total = eval(sys.argv[3])
 
@@ -78,12 +80,14 @@ def main():
         results = (primePantry(items, n_items, total))
 
         n_solutions = len(results)
-        print("{0} possible sets of items: ".format(n_solutions))
+        print("{0} possible sets of items: ".format(n_solutions),end=" ")
         for m in range(n_solutions):
             n_items = len(results[m])
-            print("Set{0} -> {1} items: ".format(m+1,n_items))
+            print(" ")
+            print("Set{0} -> {1} items: ".format(m+1,n_items),end="")
             for n in range(len(results[m])):
-                print("{0}. ".format(n+1)+results[m][n],end=" ")
+                print("{0}.".format(n+1)+results[m][n],end=" ")
+        print(" ")
 
     else:
         raise ValueError("The input not valid. Check if they're in correct type && total&n_items>0")
