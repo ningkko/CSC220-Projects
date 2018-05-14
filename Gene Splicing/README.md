@@ -38,7 +38,6 @@ ValueError: The input string of genes is not valid
 In our code, we discuss the problem in two cases, each of which contains only one for-loop. Therefore, the time complexity for two loops is O(n) (where n is the total length of the two string), and our solution is more efficient than using recursion(O(2^n)).
 
 ## References
-Inspired by:
 - https://stackoverflow.com/questions/2294493/how-to-get-the-position-of-a-character-in-python
 - https://stackoverflow.com/questions/663171/is-there-a-way-to-substring-a-string-in-python
 - https://www.tutorialspoint.com/python/list_insert.htm
