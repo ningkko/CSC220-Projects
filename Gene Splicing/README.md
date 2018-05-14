@@ -1,7 +1,6 @@
 # CSC220 Coding Challenge 2: gene splicing
 ## Objective: 
-- Given two strings representing snippets of genes (letters ACGT), 
-- identify the shortest string that could contain them both as subsequences.
+- Given two strings representing snippets of genes (letters ACGT), identify the shortest string that could contain them both as subsequences.
 
 ## Installation and set-up
 - Download the file and run it in Python 3. Input a string when the code asks for a gene, and input a second string when the code asks for another gene.
