@@ -67,7 +67,6 @@ We used generators to read in all file names. We made sure that all for loops ar
 Therefore, we think that our program is efficient. 
 
 ## References
-Inspired by:
 - http://mywiki.wooledge.org/BashFAQ/036
 - https://stackoverflow.com/questions/19007383/compare-two-different-files-line-by-line-in-python
 - https://stackoverflow.com/questions/9585218/python-find-common-text-in-two-files
